@@ -3,6 +3,7 @@ package com.rt.ProductController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,12 @@ public class ProductController {
 	@Autowired
 	ProductService pService;
 
+	@Value("${Message}")
+	private String wlcMsg;
+	
+	@Value("${WebsiteName}")
+	private String webName;
+	
 	@PostMapping("/addProduct")
 	public String Product(@RequestBody ProductEntity p) {
 		pService.addProduct(p);
@@ -27,6 +34,8 @@ public class ProductController {
 	@GetMapping("/addProduct/productId/{productId}")
 	public ProductEntity GetProductById(@PathVariable int productId) {
 		ProductEntity p = pService.GetProductById(productId);
+		System.out.println(wlcMsg);
+		System.out.println(webName);
 		return p;
 	}
 
@@ -49,7 +58,7 @@ public class ProductController {
 //   }
    @GetMapping("/product/productName/{productName}")
    public List<ProductEntity> getProductName(@PathVariable String productName){
-	 List<ProductEntity>   productList= pService.getEmpName(productName);
+	 List<ProductEntity>   productList= pService.getProductName(productName);
 	return productList;
    }
 }

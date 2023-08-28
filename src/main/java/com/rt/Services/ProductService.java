@@ -46,7 +46,7 @@ public class ProductService {
 //		return productList;
 //	}
 
-	public List<ProductEntity> getEmpName(String productName) {
+	public List<ProductEntity> getProductName(String productName) {
 		 List<ProductEntity> productList=pDAo.findByName(productName);
 		return productList;
 	}
